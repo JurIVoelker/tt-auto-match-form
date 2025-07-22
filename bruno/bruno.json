@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "tt-auto-match-form",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

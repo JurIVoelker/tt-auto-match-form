@@ -1,0 +1,19 @@
+meta {
+  name: results
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://0.0.0.0:8000/api/results
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: @file(C:\Users\juriv\Downloads\image.jpg)
+}
+
+body:file {
+  file: @file(C:\Users\juriv\programming\tt-auto-match-form\files\input\image.jpg) @contentType(image/jpeg)
+}
