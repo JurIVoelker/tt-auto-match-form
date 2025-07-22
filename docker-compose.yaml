@@ -8,7 +8,5 @@ services:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - API_URL=${API_URL}
       - PORT=8000
-    ports:
-      - "50100:8000"
 
     restart: "unless-stopped"
