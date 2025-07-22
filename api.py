@@ -4,6 +4,8 @@ from typing import Annotated
 import uuid
 import os
 from ai import get_results
+from script import extract_document
+
 
 app = FastAPI()
 
@@ -12,7 +14,6 @@ app.mount("/files", StaticFiles(directory="files"), name="files")
 
 @app.post("/api/results")
 async def read_root(file: Annotated[bytes, File()]):
-  from script import extract_document
   # from ai import get_results
 
   filename = uuid.uuid4().hex
