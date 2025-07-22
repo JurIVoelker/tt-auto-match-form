@@ -1,5 +1,5 @@
 # Use the official Python image as the base image
-FROM python:3.9-slim as builder
+FROM python:3.9-slim AS builder
 
 # Install system dependencies for OpenCV
 RUN apt-get update && apt-get install -y \

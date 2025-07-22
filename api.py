@@ -2,6 +2,8 @@ from fastapi import FastAPI, File
 from fastapi.staticfiles import StaticFiles
 from typing import Annotated
 import uuid
+import os
+from ai import get_results
 
 app = FastAPI()
 
@@ -25,13 +27,13 @@ async def read_root(file: Annotated[bytes, File()]):
     print(file_names)
   except:
     return {"error": "Failed to process the document"}, 400
-    
-  return {
-    "set_results": file_names[0],
-    "final_results": file_names[1]
-  }
-  # set_results_url = "https://s3.voelkerlabs.de/data/set_results.jpg"
-  # final_results_url = "https://s3.voelkerlabs.de/data/final_results.jpg"
+  
+  image_prefix = "https://tt-auto-match-form.voelkerlabs.de/" if os.environ.get("API_URL") is None else os.environ.get("API_URL")
+  set_results = image_prefix + file_names[0]
+  final_results = image_prefix + file_names[1]
 
-  # results = get_results(set_results_url, final_results_url)
-  # return results
+  results = get_results(set_results, final_results)
+  os.remove(file_names[0])  
+  os.remove(file_names[1])  
+
+  return results
