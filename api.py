@@ -12,6 +12,10 @@ app = FastAPI()
 # Serve static files from the "files" directory
 app.mount("/files", StaticFiles(directory="files"), name="files")
 
+@app.get("/health")
+def health_check():
+  return {"status": "healthy"}
+
 @app.post("/api/results")
 async def read_root(file: Annotated[bytes, File()]):
   # from ai import get_results
