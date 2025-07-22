@@ -33,7 +33,7 @@ async def read_root(file: Annotated[bytes, File()]):
   final_results = image_prefix + file_names[1]
 
   results = get_results(set_results, final_results)
-  os.remove(file_names[0])  
-  os.remove(file_names[1])  
+  # os.remove(file_names[0])  
+  # os.remove(file_names[1])  
 
   return results
