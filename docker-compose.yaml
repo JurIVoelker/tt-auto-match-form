@@ -9,4 +9,4 @@ services:
       - API_URL=${API_URL}
       - PORT=8000
 
-    restart: "unless-stopped"
+    restart: "no"
