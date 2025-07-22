@@ -3,6 +3,7 @@ from azure.ai.inference.models import SystemMessage, UserMessage, ImageContentIt
 from azure.core.credentials import AzureKeyCredential
 import json
 import os
+import concurrent.futures
 
 
 token = os.getenv("GITHUB_TOKEN")
@@ -116,8 +117,6 @@ def validate_results(set_results, final_results):
         return invalid_rows
 
 def get_results(set_results_url, final_results_url):
-    import concurrent.futures
-
     with concurrent.futures.ThreadPoolExecutor() as executor:
         set_results_future = executor.submit(extract_set_results, set_results_url)
         final_results_future = executor.submit(extract_final_results, final_results_url)

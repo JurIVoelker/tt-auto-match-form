@@ -9,9 +9,6 @@ from script import extract_document
 
 app = FastAPI()
 
-# Serve static files from the "files" directory
-app.mount("/files", StaticFiles(directory="files"), name="files")
-
 @app.get("/health")
 def health_check():
   return {"status": "healthy"}
@@ -33,12 +30,10 @@ async def read_root(file: Annotated[bytes, File()]):
   except:
     return {"error": "Failed to process the document"}, 400
   
-  image_prefix = "https://tt-auto-match-form.voelkerlabs.de/" if os.environ.get("API_URL") is None else os.environ.get("API_URL")
+  image_prefix = "https://s3.ttc.voelkerlabs.de/"
   set_results = image_prefix + file_names[0]
   final_results = image_prefix + file_names[1]
 
   results = get_results(set_results, final_results)
-  # os.remove(file_names[0])  
-  # os.remove(file_names[1])  
 
   return results
