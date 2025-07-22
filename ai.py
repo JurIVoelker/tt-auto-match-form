@@ -1,4 +1,3 @@
-from env import GITHUB_TOKEN
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import SystemMessage, UserMessage, ImageContentItem, TextContentItem, ImageUrl
 from azure.core.credentials import AzureKeyCredential
@@ -6,7 +5,7 @@ import json
 import os
 
 
-token = GITHUB_TOKEN if GITHUB_TOKEN else os.getenv("GITHUB_TOKEN")
+token = os.getenv("GITHUB_TOKEN")
 endpoint = "https://models.github.ai/inference"
 model = "openai/gpt-4.1"
 
